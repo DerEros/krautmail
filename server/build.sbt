@@ -9,7 +9,8 @@ libraryDependencies in ThisBuild ++= Seq( "com.typesafe.akka" %% "akka-actor" % 
                                           "org.slf4j" % "slf4j-api" % "1.7.2",
                                           "org.slf4j" % "jcl-over-slf4j" % "1.7.0" % "runtime",
                                           "ch.qos.logback" % "logback-classic" % "1.0.7" % "runtime",
-                                          "org.specs2" %% "specs2" % "2.2.3" % "test" )
+                                          "org.specs2" %% "specs2" % "2.2.3" % "test",
+                                          "org.mockito" % "mockito-all" % "1.9.5" % "test")
 
 scalacOptions in Test ++= Seq("-Yrangepos")
 
