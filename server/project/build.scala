@@ -12,8 +12,15 @@ object KrautMail extends Build {
     .aggregate(baseComponents, collectors, runners)
 
   lazy val baseComponents = Project(id = "Base", base = file("base"))
+    .aggregate(collectorsBase)
+
+  lazy val collectorsBase = Project(id = "CollectorsBase", base = file("base/collectors"))
 
   lazy val collectors = Project(id = "Collectors", base = file("collectors"))
+    .dependsOn(collectorsBase)
+    .aggregate(imapCollector)
+
+  lazy val imapCollector = Project(id = "ImapCollector", base = file("collectors/imap"))
 
   lazy val runners = Project(id = "Runners", base = file("runners"))
     .aggregate(devRunner)
