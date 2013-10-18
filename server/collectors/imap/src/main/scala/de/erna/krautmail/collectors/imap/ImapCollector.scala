@@ -1,7 +1,9 @@
+package de.erna.krautmail.collectors.imap
+
 import akka.actor.{ActorLogging, Actor}
 
 /**
- * @author Eros Candelaresi <eros@candelaresi.de> 
+ * @author Eros Candelaresi <eros@candelaresi.de>
  * @since 17.10.13 21:12
  *
  *        Collector that handle a single IMAP session.
@@ -25,6 +27,12 @@ class ImapCollector(connectionInfo: ImapConnectionInfo) extends Actor with Actor
   case object Interrupted extends State
 
   case object Exiting extends State
+
+  sealed trait Data
+
+  case object Uninitialized extends Data
+
+  case class ConnectionData(connectionInfo: ImapConnectionInfo, connectionContext: ImapConnectionContext)
 
   def receive: Actor.Receive = {
     case _ =>
