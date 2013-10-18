@@ -14,6 +14,14 @@ import scala.concurrent.Future
  * will come from same thread!
  */
 trait ImapAdapter[ContextType <: ImapConnectionContext] {
+
+  /**
+   * Creates a fresh <code>ImapConnectionContext</code> and initializes it with empty/default values.
+
+   * @return A new, empty <code>ImapConnectionContext</code> suitable for keeping the adapters internal data.
+   */
+  def createContext(): ContextType
+
   /**
    * Connect to the given IMAP server using the provided connection info.
    *

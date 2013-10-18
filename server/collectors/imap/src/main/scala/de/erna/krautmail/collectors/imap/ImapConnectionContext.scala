@@ -10,7 +10,5 @@ package de.erna.krautmail.collectors.imap
  * might need when it's called. This data could be connection handles, lists of supported features from the server, etc.
  *
  * The trait itself is empty as it will be used as opaque type by the collector.
- *
- * Use the type parameter to ensure that the context of one IMAP adapter is not accidentally given to another adapter.
  */
-trait ImapConnectionContext[T]
+trait ImapConnectionContext
