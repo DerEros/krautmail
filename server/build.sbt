@@ -9,10 +9,11 @@ libraryDependencies in ThisBuild ++= Seq( "com.typesafe.akka" %% "akka-actor" % 
                                           "org.clapper" % "grizzled-slf4j_2.10" % "1.0.1",
                                           "org.slf4j" % "slf4j-api" % "1.7.2",
                                           "javax.mail" % "javax.mail-api" % "1.5.0",
+                                          "com.sun.mail" % "javax.mail" % "1.5.0",
+                                          "io.netty" % "netty-all" % "4.0.10.Final",
                                           "org.slf4j" % "jcl-over-slf4j" % "1.7.0" % "runtime",
                                           "ch.qos.logback" % "logback-core" % "1.0.1" % "runtime",
                                           "ch.qos.logback" % "logback-classic" % "1.0.7" % "runtime",
-                                          "com.sun.mail" % "javax.mail" % "1.5.0" % "runtime",
                                           "org.specs2" %% "specs2" % "2.2.3" % "test",
                                           "org.mockito" % "mockito-all" % "1.9.5" % "test",
                                           "com.icegreen" % "greenmail" % "1.3.1b" % "test")

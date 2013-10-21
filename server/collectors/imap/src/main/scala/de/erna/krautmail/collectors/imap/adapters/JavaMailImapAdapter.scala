@@ -35,7 +35,12 @@ class JavaMailImapAdapter(implicit val ec: ExecutionContext) extends ImapAdapter
   def connect(connectionInfo: ImapConnectionInfo, context: JavaMailImapConnectionContext): Future[JavaMailImapConnectionContext] = {
     Future {
       trace("Setting up IMAP session and store...")
-      val session = Session.getDefaultInstance(new Properties())
+      val props = new Properties
+      props.setProperty("mail.imap.connectiontimeout", "20000")
+      props.setProperty("mail.imap.timeout", "20000")
+      props.setProperty("mail.imap.connectionpooltimeout", "20000")
+
+      val session = Session.getDefaultInstance(props)
       val store = session.getStore("imap")
       trace("Done setting up IMAP session and store.")
 

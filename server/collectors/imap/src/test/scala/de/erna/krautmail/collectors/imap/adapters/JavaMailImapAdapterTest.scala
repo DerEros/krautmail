@@ -10,7 +10,7 @@ import org.specs2.time.NoTimeConversions
 import scala.concurrent.duration._
 import scala.util.Failure
 import javax.mail.AuthenticationFailedException
-import java.util.concurrent.TimeoutException
+import com.sun.mail.util.MailConnectException
 
 /**
  * User: Eros Candelaresi <eros@candelaresi.de>
@@ -82,7 +82,7 @@ class JavaMailImapAdapterTest extends mutable.Specification with NoTimeConversio
       futureResult.value should haveClass[Some[Failure[IllegalStateException]]]
     }
 
-    "time out after a specified amount of time if service does not respond" in {
+    "detect if there is no service on the other side to which it could connect" in {
       val adapter = new JavaMailImapAdapter
       val endpoint = new InetSocketAddress("localhost", 1234)
       val connectionInfo = ImapConnectionInfo(endpoint, "someUsername", "somePassword")
@@ -90,8 +90,29 @@ class JavaMailImapAdapterTest extends mutable.Specification with NoTimeConversio
 
       val futureResult = adapter.connect(connectionInfo, connectionContext)
 
-      Await.result(futureResult, 10 second) must throwA[TimeoutException] //TODO: this should be an exception thrown by the adapter, not by the test
+      Await.result(futureResult, 10 second) must throwA[MailConnectException]
     }
+
+    // This needs to be moved to integration tests, it simply takes too long for a unit test.
+    //    "time out after a specified amount of time if after the connect no data is received" in {
+    //      val socketServer = new TimeoutSocketServer(8878, 20 seconds)
+    //      val adapter = new JavaMailImapAdapter
+    //      val endpoint = new InetSocketAddress("localhost", 8878)
+    //      val connectionInfo = ImapConnectionInfo(endpoint, "someUsername", "somePassword")
+    //      val connectionContext = adapter.createContext()
+    //
+    //      socketServer.run()
+    //
+    //      val futureResult = adapter.connect(connectionInfo, connectionContext)
+    //
+    //      val evidence = Await.result(futureResult, 100 second) must throwA[MessagingException]
+    //
+    //      socketServer.stop()
+    //
+    //      evidence
+    //
+    //      skipped("This test runs too long. It should be moved to integration testing.")
+    //    }
 
   }
 
