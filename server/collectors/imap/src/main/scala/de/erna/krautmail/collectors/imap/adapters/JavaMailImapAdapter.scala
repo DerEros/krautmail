@@ -24,6 +24,9 @@ class JavaMailImapAdapter(implicit val ec: ExecutionContext) extends ImapAdapter
   /**
    * Connect to the given IMAP server using the provided connection info.
    *
+   * For details on possible exceptions thrown by this method, check JavaMail
+   * <a href="https://javamail.java.net/nonav/docs/api/javax/mail/Service.html#connect(java.lang.String, int, java.lang.String, java.lang.String)">
+   * documentation</a>.
    * @param connectionInfo Connection information like host, username, password, etc.
    * @param context A context object that might have been filled before, eg. from previous failed connection attempts,
    *                etc. In most cases it will be empty

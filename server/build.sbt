@@ -14,7 +14,8 @@ libraryDependencies in ThisBuild ++= Seq( "com.typesafe.akka" %% "akka-actor" % 
                                           "ch.qos.logback" % "logback-classic" % "1.0.7" % "runtime",
                                           "com.sun.mail" % "javax.mail" % "1.5.0" % "runtime",
                                           "org.specs2" %% "specs2" % "2.2.3" % "test",
-                                          "org.mockito" % "mockito-all" % "1.9.5" % "test")
+                                          "org.mockito" % "mockito-all" % "1.9.5" % "test",
+                                          "com.icegreen" % "greenmail" % "1.3.1b" % "test")
 
 scalacOptions in Test ++= Seq("-Yrangepos")
 
